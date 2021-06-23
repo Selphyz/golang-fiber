@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"server/database"
+	"server/middleware"
 	"server/models"
 	"strconv"
 
@@ -9,12 +10,18 @@ import (
 )
 
 func AllRoles(c *fiber.Ctx) error {
+	if err := middleware.IsAuthorized(c, "roles"); err != nil{
+		return err
+	}
 	var roles []models.Role
 	database.DB.Find(&roles)
 	return c.JSON(roles)
 }
 
 func GetRole(c *fiber.Ctx) error {
+	if err := middleware.IsAuthorized(c, "roles"); err != nil{
+		return err
+	}
 	id, _ := strconv.Atoi(c.Params("id"))
 	role := models.Role{
 		Id: uint(id),
@@ -24,6 +31,9 @@ func GetRole(c *fiber.Ctx) error {
 }
 
 func CreateRole(c *fiber.Ctx) error {
+	if err := middleware.IsAuthorized(c, "roles"); err != nil{
+		return err
+	}
 	var roleDto fiber.Map
 	if err := c.BodyParser(&roleDto); err != nil {
 		return err
@@ -45,6 +55,9 @@ func CreateRole(c *fiber.Ctx) error {
 }
 
 func UpdateRole(c *fiber.Ctx) error {
+	if err := middleware.IsAuthorized(c, "roles"); err != nil{
+		return err
+	}
 	id, _ := strconv.Atoi(c.Params("id"))
 	var roleDto fiber.Map
 	if err := c.BodyParser(&roleDto); err != nil {
@@ -70,6 +83,9 @@ func UpdateRole(c *fiber.Ctx) error {
 }
 
 func DeleteRole(c *fiber.Ctx) error {
+	if err := middleware.IsAuthorized(c, "roles"); err != nil{
+		return err
+	}
 	id, _ := strconv.Atoi(c.Params("id"))
 	role := models.Role{
 		Id: uint(id),

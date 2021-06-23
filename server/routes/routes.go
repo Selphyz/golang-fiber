@@ -42,4 +42,8 @@ func Setup(app *fiber.App){
 	
 	app.Post("/api/upload", controllers.UploadImage)
 	app.Static("/api/uploads", "./uploads")
+
+	app.Get("/api/orders", controllers.AllOrders)
+	app.Post("/api/export", controllers.ExportCSV)
+	app.Get("/api/chart", controllers.Chart)
 }

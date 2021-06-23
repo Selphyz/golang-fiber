@@ -7,7 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func PaginateProducts(db *gorm.DB, entity models.Entity, page int) fiber.Map {
+func Paginate(db *gorm.DB, entity models.Entity, page int) fiber.Map {
 	limit := 5
 	offset := (page - 1) * limit
 	total := entity.Count(db)
