@@ -1,10 +1,11 @@
 import React from 'react'
+import { Wrapper } from '../components';
 
 export const Dashboard = () => {
     return (
-        <div>
+        <Wrapper>
             Dashboard
-        </div>
+        </Wrapper>
     )
 }
 

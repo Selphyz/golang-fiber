@@ -9,7 +9,7 @@ export const Wrapper = (props: any) => {
                 <div className="row">
                     <Menu />
                     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                        {props}
+                        {props.children}
                     </main>
                 </div>
             </div>
