@@ -19,7 +19,7 @@ export const Register = () => {
             password,
             password_confirm
         });
-        const { data } = await axios.post("http://localhost:8000/api/register", {
+        const { data } = await axios.post("register", {
             first_name: first_name,
             last_name: last_name,
             email: email,

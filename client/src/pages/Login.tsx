@@ -8,10 +8,10 @@ export const Login = () => {
     const [redirect, setRedirect] = useState<boolean>(false);
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        const { data } = await axios.post("http://localhost:8000/api/login", {
+        const { data } = await axios.post("login", {
             email,
             password
-        }, { withCredentials: true });
+        });
         console.log(data);
         setRedirect(true);
     }
@@ -23,7 +23,7 @@ export const Login = () => {
                     onChange={e => setEmail(e.target.value)} />
                 <input type="password" className="form-control" placeholder="Password"
                     onChange={e => setPassword(e.target.value)} />
-                <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                <button className="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
             </form>
         </main>
 }

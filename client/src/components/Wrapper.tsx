@@ -1,8 +1,22 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router-dom';
 import { Nav, Menu } from '../components'
 
 export const Wrapper = (props: any) => {
-    return (
+    const [redirect, setRedirect] = useState(false);
+    // useEffect(() => {
+    //     (
+    //         async () => {
+    //             try {
+    //                 const { data } = await axios.get("user");
+    //             } catch {
+    //                 setRedirect(true);
+    //             }
+    //         }
+    //     )();
+    // }, []);
+    return (redirect) ? <Redirect to="login" /> : (
         <>
             <Nav />
             <div className="container-fluid">

@@ -10,9 +10,9 @@ import (
 )
 
 func AllUsers(c *fiber.Ctx) error {
-	if err := middleware.IsAuthorized(c, "users"); err != nil{
-		return err
-	}
+	// if err := middleware.IsAuthorized(c, "users"); err != nil{
+	// 	return err
+	// }
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 	limit := 5
 	offset := (page - 1) * limit

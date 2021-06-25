@@ -13,7 +13,7 @@ import (
 func IsAuthorized(c *fiber.Ctx, page string) error {
 	cookie := c.Cookies("jwt")
 	Id, err := util.ParseJwt(cookie)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 	userId, _ := strconv.Atoi(Id)
@@ -24,7 +24,7 @@ func IsAuthorized(c *fiber.Ctx, page string) error {
 	role := models.Role{
 		Id: user.RoleId,		
 	}
-	database.DB.Preload("Role").Find(&role)
+	database.DB.Preload("Permissions").Find(&role)
 	if c.Method()=="GET"{
 		for _, permission := range role.Permissions{
 			if permission.Name == "view_"+page || permission.Name == "edit_"+page{
