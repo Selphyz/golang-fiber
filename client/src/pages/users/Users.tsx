@@ -1,18 +1,31 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Wrapper } from '../../components'
-import { User } from '../../model/User'
+import { FetchUsers, IUser, User } from '../../model/User'
 
 export const Users = () => {
-    const [users, setUsers] = useState<User[]>()
+    const [users, setUsers] = useState<IUser[]>()
+    const [page, setPage] = useState(1);
+    const [lastPage, setLastPage] = useState(0);
     useEffect(() => {
         (
             async () => {
-                const { data: { data } } = await axios.get("users");
-                setUsers(data)
+                const { data } = await axios.get<FetchUsers>(`users?page=${page}`);
+                setUsers(data.data)
+                setLastPage(data.meta.last_page)
             }
         )()
-    }, [])
+    }, [page])
+    const next = () => {
+        if (page < lastPage) {
+            setPage(page + 1)
+        }
+    }
+    const prev = () => {
+        if (page > 1) {
+            setPage(page - 1)
+        }
+    }
     return (
         <Wrapper>
             <div className="table-responsive">
@@ -27,7 +40,7 @@ export const Users = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users?.map((user: User) => {
+                        {users?.map((user: IUser) => {
                             return (
                                 <tr key={user.id}>
                                     <td>{user.id}</td>
@@ -41,6 +54,12 @@ export const Users = () => {
                     </tbody>
                 </table>
             </div>
+            <nav>
+                <ul>
+                    <li><span className="page-link" onClick={prev}>Previous</span></li>
+                    <li><span className="page-link" onClick={next}>Next</span></li>
+                </ul>
+            </nav>
         </Wrapper>
     )
 }

@@ -20,3 +20,11 @@ export interface IUser{
     email:string,
     role:IRole
 }
+export interface FetchUsers{
+    data: IUser[],        
+    meta:{
+        last_page: number,
+        page: number,
+        total: number
+    }
+}
