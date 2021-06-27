@@ -3,6 +3,8 @@ package util
 import (
 	"server/models"
 
+	"math"
+
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
 )
@@ -17,7 +19,7 @@ func Paginate(db *gorm.DB, entity models.Entity, page int) fiber.Map {
 		"meta": fiber.Map{
 			"total":		total,
 			"page":			page,
-			"last_page":	int(total)/limit, 
+			"last_page":	math.Ceil(float64(float64(total)/float64(limit))), 
 		},
 	}
 }

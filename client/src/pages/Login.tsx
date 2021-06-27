@@ -8,11 +8,10 @@ export const Login = () => {
     const [redirect, setRedirect] = useState<boolean>(false);
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        const { data } = await axios.post("login", {
+        await axios.post("login", {
             email,
             password
         });
-        console.log(data);
         setRedirect(true);
     }
     return (redirect) ? <Redirect to="/" /> :

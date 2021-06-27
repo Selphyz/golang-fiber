@@ -31,4 +31,4 @@ export const Wrapper = (props: any) => {
     )
 }
 
-export default Wrapper
+export default Wrapper;

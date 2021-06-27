@@ -1,8 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Wrapper } from '../../components'
-import { FetchUsers, IUser, User } from '../../model/User'
-
+import { FetchUsers, IUser } from '../../model/User'
+import '../style/Users.css'
 export const Users = () => {
     const [users, setUsers] = useState<IUser[]>()
     const [page, setPage] = useState(1);
@@ -26,8 +27,17 @@ export const Users = () => {
             setPage(page - 1)
         }
     }
+    const del = async (id: number) => {
+        if (window.confirm('Are yousure you want to delete this record')) {
+            await axios.delete(`users/${id}`)
+            setUsers(users?.filter((u: IUser) => u.id !== id))
+        }
+    }
     return (
         <Wrapper>
+            <div className="pt-3 pb-2 mb-3 border-bottom">
+                <Link to="/users/create" className="btn btn-sm btn-outline-secondary">Add</Link>
+            </div>
             <div className="table-responsive">
                 <table className="table table-striped table-sm">
                     <thead>
@@ -47,7 +57,11 @@ export const Users = () => {
                                     <td>{user.first_name} {user.last_name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.role.name}</td>
-                                    <td></td>
+                                    <td><div className="btn-group mr-2">
+                                        <span className="button btn btn-sm btn-danger"
+                                            onClick={() => del(user.id)}>Delete</span>
+                                    </div>
+                                    </td>
                                 </tr>
                             )
                         })}
@@ -55,7 +69,7 @@ export const Users = () => {
                 </table>
             </div>
             <nav>
-                <ul>
+                <ul className="pagination-buttons">
                     <li><span className="page-link" onClick={prev}>Previous</span></li>
                     <li><span className="page-link" onClick={next}>Next</span></li>
                 </ul>

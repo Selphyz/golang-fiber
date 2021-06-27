@@ -1,0 +1,12 @@
+.button{
+    cursor: pointer;
+}
+.pagination-buttons{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+.pagination-buttons li{
+    margin: 0 3px;
+    cursor: pointer;
+}

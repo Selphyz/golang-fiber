@@ -1,0 +1,9 @@
+.create-user-form{
+    margin-top: 10px;
+}
+.create-user-form input{
+    background-color: rgb(192, 192, 192);
+}
+.create-user-form select{
+    background-color: rgb(192, 192, 192);
+}
