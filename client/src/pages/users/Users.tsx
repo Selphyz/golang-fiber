@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Wrapper } from '../../components'
 import { FetchUsers, IUser } from '../../model/User'
 import '../style/Users.css'
+
 export const Users = () => {
     const [users, setUsers] = useState<IUser[]>()
     const [page, setPage] = useState(1);
@@ -28,11 +29,11 @@ export const Users = () => {
         }
     }
     const del = async (id: number) => {
-        if (window.confirm('Are yousure you want to delete this record')) {
-            await axios.delete(`users/${id}`)
-            setUsers(users?.filter((u: IUser) => u.id !== id))
-        }
-    }
+      if (window.confirm('Are yousure you want to delete this record')) {
+        await axios.delete(`users/${id}`);
+        setUsers(users?.filter((u: IUser) => u.id !== id));
+      }
+    };
     return (
         <Wrapper>
             <div className="pt-3 pb-2 mb-3 border-bottom">
@@ -52,18 +53,25 @@ export const Users = () => {
                     <tbody>
                         {users?.map((user: IUser) => {
                             return (
-                                <tr key={user.id}>
-                                    <td>{user.id}</td>
-                                    <td>{user.first_name} {user.last_name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.role.name}</td>
-                                    <td><div className="btn-group mr-2">
-                                        <span className="button btn btn-sm btn-danger"
-                                            onClick={() => del(user.id)}>Delete</span>
-                                    </div>
-                                    </td>
-                                </tr>
-                            )
+                              <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>
+                                  {user.first_name} {user.last_name}
+                                </td>
+                                <td>{user.email}</td>
+                                <td>{user.role.name}</td>
+                                <td>
+                                  <div className='btn-group mr-2'>
+                                    <Link className='button btn btn-sm btn-info' to={`/users/${user.id}/edit`}>
+                                      Edit
+                                    </Link>
+                                    <span className='button btn btn-sm btn-danger' onClick={() => del(user.id)}>
+                                      Delete
+                                    </span>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
                         })}
                     </tbody>
                 </table>

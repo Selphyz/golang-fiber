@@ -5,17 +5,17 @@ import { Nav, Menu } from '../components'
 
 export const Wrapper = (props: any) => {
     const [redirect, setRedirect] = useState(false);
-    // useEffect(() => {
-    //     (
-    //         async () => {
-    //             try {
-    //                 const { data } = await axios.get("user");
-    //             } catch {
-    //                 setRedirect(true);
-    //             }
-    //         }
-    //     )();
-    // }, []);
+    useEffect(() => {
+        (
+            async () => {
+                try {
+                    await axios.get("user");
+                } catch {
+                    setRedirect(true);
+                }
+            }
+        )();
+    }, []);
     return (redirect) ? <Redirect to="login" /> : (
         <>
             <Nav />

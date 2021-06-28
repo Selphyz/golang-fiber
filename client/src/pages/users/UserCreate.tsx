@@ -5,7 +5,7 @@ import { Wrapper } from '../../components'
 import { IRole, Role } from '../../model/Role';
 import '../style/UsersCreate.css'
 
-const UsersCreate = () => {
+export const UserCreate = () => {
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -58,4 +58,4 @@ const UsersCreate = () => {
         </Wrapper>
 }
 
-export default UsersCreate
+export default UserCreate

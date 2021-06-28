@@ -1,18 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Dashboard, Login, Register, Users } from './pages';
+import { Dashboard, Login, Register, Roles, UserCreate, UserEdit, Users } from './pages';
 import './App.css';
-import UsersCreate from './pages/users/UsersCreate';
 
 export const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
         <Route path={"/"} exact component={Dashboard} />
-        <Route path={"/users"} exact component={Users} />
         <Route path={"/register"} component={Register} />
         <Route path={"/login"} component={Login} />
-        <Route path={"/users/create"} component={UsersCreate} />
+        <Route path={"/users"} exact component={Users} />
+        <Route path={"/users/create"} component={UserCreate} />
+        <Route path={"/users/:id/edit"} component={UserEdit} />
+        <Route path={"/roles"} exact component={Roles} />
       </BrowserRouter>
     </div>
   );
