@@ -16,10 +16,16 @@ export const Roles = () => {
     (async () => {
       const { data } = await axios.get('roles');
       setRoles(data);
+      console.log(data);      
     })();
   }, []);
   return (
     <Wrapper>
+      <div className='pt-3 pb-2 mb-2 border-bottom'>
+        <Link to='/roles/create' className='btn btn-sm btn-secondary'>
+          Create New Role
+        </Link>
+      </div>
       <div className='table-responsive'>
         <table className='table table-striped table-sm'>
           <thead>
@@ -37,7 +43,7 @@ export const Roles = () => {
                   <td>{role.id}</td>
                   <td>
                     <div className='btn-group mr-2'>
-                      <Link className='button btn btn-sm btn-info' to={`/users/${role.id}/edit`}>
+                      <Link className='button btn btn-sm btn-info' to={`/roles/${role.id}/edit`}>
                         Edit
                       </Link>
                       <span className='button btn btn-sm btn-danger' onClick={() => del(role.id)}>
