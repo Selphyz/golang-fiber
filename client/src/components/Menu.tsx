@@ -21,6 +21,11 @@ export const Menu = () => {
                 Roles
               </NavLink>
             </li>
+            <li className='nav-item'>
+              <NavLink activeClassName='activeroute' className='nav-link' aria-current='page' to={'/products'}>
+                Products
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>
