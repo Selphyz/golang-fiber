@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { SyntheticEvent, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Wrapper } from '../../components';
+import { ImageUpload, Wrapper } from '../../components';
 
 export const ProductCreate = () => {
   const [title, setTitle] = useState('');
@@ -26,19 +26,22 @@ export const ProductCreate = () => {
     <Wrapper>
       <form onSubmit={submit}>
         <div className='mb-3'>
-          <label htmlFor=''>Title</label>
+          <label>Title</label>
           <input type='text' className='form-control' onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className='mb-3'>
-          <label htmlFor=''>Description</label>
+          <label>Description</label>
           <textarea className='form-control' onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div className='mb-3'>
-          <label htmlFor=''>Image</label>
-          <input type='text' className='form-control' onChange={(e) => setImage(e.target.value)} />
+          <label>Image</label>
+          <div className="input-group">
+            <input type='text' className='form-control' value={image} onChange={(e) => setImage(e.target.value)} />
+            <ImageUpload uploaded={setImage} />
+          </div>
         </div>
         <div className='mb-3'>
-          <label htmlFor=''>Price</label>
+          <label>Price</label>
           <input type='number' className='form-control' onChange={(e) => setPrice(e.target.value)} />
         </div>
         <button className='btn btn-outline-secondary'>Save</button>
